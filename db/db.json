@@ -1,1 +1,28 @@
-[{"title":"Test Title","text":"Test text"},{"noteTitle":"Test","Note":"Test test"},{"bob":"test"}]
+[
+    {
+        "title": "Test Title",
+        "text": "Test text"
+    },
+    {
+        "noteTitle": "Test",
+        "Note": "Test test"
+    },
+    {
+        "bob": "test"
+    },
+    {
+        "test": "test"
+    },
+    {
+        "title": "Hommework",
+        "text": "Dang it"
+    },
+    {
+        "title": "Hommework",
+        "text": "Dang it"
+    },
+    {
+        "title": "bob",
+        "text": "tim"
+    }
+]
