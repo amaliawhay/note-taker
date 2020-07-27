@@ -6,6 +6,9 @@ const fs = require("fs");
 //get db
 const notesDB = require("./db/db.json");
 
+//Variables to hold id's for notes
+var idNum = null;
+var getID = null;
 //Set up express
 const app = express();
 const PORT = 8080;
@@ -13,9 +16,16 @@ const PORT = 8080;
 //Allows express app to parse data
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-//Takes /public dir out of URL
+//access to public dir
 app.use(express.static("public"));
 
+//sets ID's
+if (notesDB.length === 0) {
+  idNum = 0;
+} else {
+  getID = notesDB.length - 1;
+  idNum - notesDB[getID].id;
+}
 //Gets index.html
 app.get("/", function (req, res) {
   res.sendFile(path.join(__dirname, "./public/index.html"));
@@ -28,12 +38,7 @@ app.get("/notes", function (req, res) {
 
 //api get
 app.get("/api/notes", function (req, res) {
-  res.sendFile(path.join(__dirname, "./db/db.json"));
-});
-
-/*
-app.get("/api/notes", function (req, res) {
-  fs.readFile("db.json", function (err, data) {
+  fs.readFile("./db/db.json", function (err, data) {
     // Check for errors
     if (err) throw err;
 
@@ -43,11 +48,13 @@ app.get("/api/notes", function (req, res) {
     return res.json(newNote); // Prints note
   });
 });
-*/
 
 //api post
 app.post("/api/notes", function (req, res) {
   const postNote = req.body;
+  // for (i = 0, i < notesDB.length, i++){
+  //   postNote["id"] = i + 1;
+  // };
 
   fs.readFile("./db/db.json", (err, data) => {
     if (err) throw err;
