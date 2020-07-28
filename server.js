@@ -11,7 +11,7 @@ var idNum = null;
 var getID = null;
 //Set up express
 const app = express();
-const PORT = 8080;
+const PORT = process.env.PORT || 8080;
 
 //Allows express app to parse data
 app.use(express.urlencoded({ extended: true }));
@@ -27,7 +27,7 @@ if (notesDB.length === 0) {
   idNum - notesDB[getID].id;
 }
 //Gets index.html
-app.get("*", function (req, res) {
+app.get("/", function (req, res) {
   res.sendFile(path.join(__dirname, "./public/index.html"));
 });
 
